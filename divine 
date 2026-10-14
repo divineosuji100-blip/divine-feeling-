@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DIVINE OSUJI WORK</title>
+</head>
+<body>
+
+    <h2>Who will suck my dick today?</h2>
+
+    <h3>it is strong and vainy!!!!<h3>
+    <h4>if u want to just pick one of the option<h4>
+
+    
+    <select id="attendance">
+        <option value="">Choose an option</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <button onclick="showAnswer()">Submit</button>
+
+    <script>
+        function showAnswer() {
+            let answer = document.getElementById("attendance").value;
+
+            if (answer === "") {
+                alert("Please choose Yes or No.");
+            } else {
+                alert("Your answer is: " + answer);
+            }
+        }
+    </script>
+
+</body>
+    </html>
