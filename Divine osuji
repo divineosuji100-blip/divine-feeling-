@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>School Attendance System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #087f5b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+
+        li {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>School Attendance System</h2>
+
+    <form id="attendanceForm">
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Full name"
+            required
+        >
+
+        <input
+            type="text"
+            id="studentID"
+            placeholder="Student ID"
+            required
+        >
+
+        <select id="course">
+            <option>Introduction to Programming</option>
+            <option>Mathematics</option>
+            <option>Computer Networks</option>
+        </select>
+
+        <button type="submit">
+            Mark Attendance
+        </button>
+
+    </form>
+
+    <h3>Attendance Register</h3>
+
+    <ul id="attendanceList"></ul>
+
+</div>
+
+<script>
+    const form = document.getElementById(
+        "attendanceForm"
+    );
+
+    const list = document.getElementById(
+        "attendanceList"
+    );
+
+    const records = [];
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById(
+            "studentName"
+        ).value.trim();
+
+        const id = document.getElementById(
+            "studentID"
+        ).value.trim();
+
+        const course = document.getElementById(
+            "course"
+        ).value;
+
+        const alreadyMarked = records.some(
+            record =>
+                record.id.toLowerCase() === id.toLowerCase()
+                && record.course === course
+        );
+
+        if (alreadyMarked) {
+            alert("You have already marked attendance!");
+            return;
+        }
+
+        const time = new Date().toLocaleString();
+
+        records.push({
+            name: name,
+            id: id,
+            course: course,
+            time: time
+        });
+
+        const item = document.createElement("li");
+
+        item.textContent =
+            name + " (" + id + ") - " +
+            course + " - Present at " + time;
+
+        list.appendChild(item);
+
+        alert("Attendance marked successfully!");
+
+        form.reset();
+    });
+</script>
+
+</body>
+</html>
